@@ -1,20 +1,14 @@
 import { Pool } from "pg"
-const connectionString = process.env.DATABASE_URL
-if (!connectionString) {
-  throw new Error(
-    "DATABASE_URL nao definida. Crie backend/.env com " +
-      "DATABASE_URL=postgresql://usuario:senha@localhost:5432/banco",
-  )
-}
+import { env } from "../../config/env.js"
 
+// Pool de conexões reutilizável para o PostgreSQL
 export const pool = new Pool({
-  connectionString,
-  max: 10, 
+  connectionString: env.databaseUrl,
+  max: 10,
   idleTimeoutMillis: 30_000,
   connectionTimeoutMillis: 5_000,
 })
 
-
 pool.on("error", (error) => {
-  console.error("Erro inesperado em conexao ociosa do pool:", error)
+  console.error("Erro inesperado em conexão ociosa do pool:", error)
 })
