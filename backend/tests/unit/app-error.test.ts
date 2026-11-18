@@ -1,8 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { createAppError, isAppError } from "../../src/shared/errors/app-error.js"
 
-// O QUE ISSO FAZ:
-// Testes unitários para validar o comportamento das funções de erro funcional da aplicação.
 describe("AppError Functional Module", () => {
   it("should create an AppError with default statusCode 400", () => {
     const error = createAppError("Invalid request payload")
