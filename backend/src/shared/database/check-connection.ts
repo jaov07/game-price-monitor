@@ -1,28 +1,32 @@
-import "dotenv/config"
 import { pool } from "./pool.js"
 
+// O QUE ISSO FAZ:
+// Tipo do resultado da query de verificação de conexão com o PostgreSQL
 type PingRow = {
-  agora: Date
-  banco: string
-  usuario: string
+  currentTime: Date
+  databaseName: string
+  currentUser: string
 }
 
-async function main() {
+async function checkDatabaseConnection() {
   const { rows } = await pool.query<PingRow>(
-    "SELECT now() AS agora, current_database() AS banco, current_user AS usuario",
+    `SELECT 
+      now() AS "currentTime", 
+      current_database() AS "databaseName", 
+      current_user AS "currentUser"`,
   )
 
   const [row] = rows
 
-  console.log("Conexao com o PostgreSQL OK")
-  console.log("  Banco:", row.banco)
-  console.log("  Usuario:", row.usuario)
-  console.log("  Hora do servidor:", row.agora)
+  console.log("PostgreSQL connection OK")
+  console.log("  Database:", row.databaseName)
+  console.log("  User:", row.currentUser)
+  console.log("  Server time:", row.currentTime)
 }
 
-main()
+checkDatabaseConnection()
   .catch((error) => {
-    console.error("Falha ao conectar no PostgreSQL:")
+    console.error("Failed to connect to PostgreSQL:")
     console.error(error instanceof Error ? error.message : error)
     process.exitCode = 1
   })

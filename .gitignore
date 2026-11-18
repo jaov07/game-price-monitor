@@ -1,17 +1,17 @@
-# Dependencias
+# Dependencies
 node_modules/
 
-# Build e cobertura de testes
+# Build and test coverage
 dist/
 build/
 coverage/
 
-# Variaveis de ambiente (nunca commitar segredos)
+# Environment variables
 .env
 .env.*
 !.env.example
 
-# Editores e sistema operacional
+# Editors and OS
 .vscode/
 .idea/
 .DS_Store

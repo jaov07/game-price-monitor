@@ -10,5 +10,5 @@ export const pool = new Pool({
 })
 
 pool.on("error", (error) => {
-  console.error("Erro inesperado em conexão ociosa do pool:", error)
+  console.error("Unexpected error on idle client in pool:", error)
 })

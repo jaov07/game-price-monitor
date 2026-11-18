@@ -17,7 +17,7 @@ export function errorHandler(
   }
 
   // Erros inesperados ou falhas não tratadas
-  console.error("Erro inesperado no servidor:", error)
+  console.error("Unexpected server error:", error)
 
   return res.status(500).json({
     status: "error",
