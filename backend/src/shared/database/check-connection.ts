@@ -1,7 +1,6 @@
 import { pool } from "./pool.js"
 
-// O QUE ISSO FAZ:
-// Tipo do resultado da query de verificação de conexão com o PostgreSQL
+
 type PingRow = {
   currentTime: Date
   databaseName: string
